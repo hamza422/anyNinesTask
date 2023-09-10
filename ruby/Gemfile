@@ -1,5 +1,6 @@
-ruby '3.0.3'
+ruby '3.2.2'
 source 'https://rubygems.org'
+gem 'nokogiri'
 gem 'rack', '~> 2.2'
 gem 'rspec', '~> 3.11'
 gem 'rack-test', '~> 2.0'
