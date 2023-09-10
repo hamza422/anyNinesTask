@@ -1,6 +1,4 @@
 require 'active_record'
-require 'pg'
-
 
 DB = ActiveRecord::Base.establish_connection(
   :adapter => 'postgresql',
