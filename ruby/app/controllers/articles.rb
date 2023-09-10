@@ -26,12 +26,13 @@ class ArticleController
   rescue StandardError
     { ok: false }
   end
+  
 
   def get_article(id)
     res = Article.where(:id => id)
-
-    if res.empty?
-      { ok: true, data: res }
+	
+    if !res.empty?
+      { ok: true, data: res.first  }
     else
       { ok: false, msg: 'Article not found' }
     end
@@ -50,6 +51,14 @@ class ArticleController
   end
 
   def get_batch
-    
+    res = Article.all
+ 
+    if !res.empty?
+      { ok: true, data: res }
+    else
+      { ok: false, msg: 'No article found' }
+    end
+  rescue StandardError
+    { ok: false }
   end
 end
