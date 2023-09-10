@@ -1,30 +1,30 @@
 class ArticleController
   def create_article(article)
-    article_not_exists = ! (Article.where(:title => article['title']).empty?)
-
-    return { ok: false, msg: 'Article with given title already exists' } unless article_not_exists
-
-    new_article = Article.new(:title => article['title'], :content => article['content'], :created_at => Time.now)
-    new_article.save
-
-    { ok: false, obj: article }
-  rescue StandardError
-    { ok: false }
-  end
+    article_not_exists =  (Article.where(:title => article['title']).empty?)
+	
+	if article_not_exists
+	   new_article = Article.new(:title => article['title'], :content => article['content'], :created_at => Time.now)
+	   
+	   if new_article.save
+		 { ok: true, obj: new_article }
+	   end
+    
+	else
+	    { ok: false, msg: 'Article with given title already exists' } 
+	end
+	
+   end
 
   def update_article(id, new_data)
 
     article = Article.where(id: id).first
+	
+	if  article != nil and article.update(new_data)
+	   { ok: true, obj: article }
+	else
+		 { ok: false, msg: 'Article could not be found' } # unless article.nil?
+	end
 
-    return { ok: false, msg: 'Article could not be found' } unless article.nil?
-
-    article.title = new_data['title']
-    article.content = new_data['content']
-    article.save_changes
-
-    { ok: true }
-  rescue StandardError
-    { ok: false }
   end
   
 
