@@ -16,7 +16,6 @@ class ArticleController
    end
 
   def update_article(id, new_data)
-
     article = Article.where(id: id).first
 	
 	if  article != nil and article.update(new_data)
@@ -49,7 +48,7 @@ class ArticleController
 		{ ok: true , delete_count: 1}
 		end
 	  else
-	  { ok: false}
+	  { ok: false , msg: 'Article does not exist'}
 	  end
   end
 

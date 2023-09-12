@@ -71,7 +71,7 @@ describe ArticleRoutes do
   context 'testing the create article endpoint ' do
     let(:response) do
       post '/', JSON.generate('title' => 'Route Test Article', 'content' => 'test content'),
-      prepare_headers 
+      auth_header
     end
 
     it 'checks response status and body' do
@@ -85,7 +85,7 @@ describe ArticleRoutes do
   context 'testing the update article endpoint ' do
     let(:response) do
       put '/2', JSON.generate('title' => 'Updated Test Article', 'content' => 'update'),
-      prepare_headers
+      auth_header
     end
 
     it 'checks response status and body' do
