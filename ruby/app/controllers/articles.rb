@@ -41,13 +41,16 @@ class ArticleController
   end
 
   def delete_article(_id)
-    delete_count = Article.delete(:id => id)
+  
+	  article = Article.find_by(id: _id)
 
-    if delete_count == 0
-      { ok: true }
-    else
-      { ok: true, delete_count: delete_count }
-    end
+	  if article!=nil
+		if article.destroy
+		{ ok: true , delete_count: 1}
+		end
+	  else
+	  { ok: false}
+	  end
   end
 
   def get_batch
