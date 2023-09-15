@@ -1,0 +1,5 @@
+name: ruby
+blobstore:
+  provider: "local"
+  options:
+    blobstore_path: /tmp/local-blobstore

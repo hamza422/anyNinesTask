@@ -1,0 +1,15 @@
+<%
+port= p("port")
+%>
+
+<%
+if port >= 1024 && port < 8080
+  raise "Invalid port number"
+end
+
+if !(port == 8080) && !(port == 8081)
+  raise "Wrong port number"
+end
+%>
+
+port: <%= port %>

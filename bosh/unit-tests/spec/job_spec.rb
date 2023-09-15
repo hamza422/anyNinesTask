@@ -39,7 +39,6 @@ describe 'ruby app main job:' do
     
     it 'raises error if exec command is malformed' do
       tmps = template.render({'bootstrap' => 'app.rb' })
-
       exec_line = tmps.each_line do |line|
         line if line.include? 'bundle exec'
       end
